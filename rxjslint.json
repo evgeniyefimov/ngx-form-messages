@@ -1,0 +1,39 @@
+{
+  "_comments": "rxjs-prefer-angular-composition",
+  "extends": ["rxjs-tslint-rules"],
+  "rules": {
+    "rxjs-finnish": {
+      "options": [
+        {
+          "functions": false,
+          "methods": false,
+          "parameters": true,
+          "properties": false,
+          "types": {
+            "^AsyncSubject$": false,
+            "^EventEmitter$": false,
+            "^ReplaySubject$": false,
+            "^Store$": false,
+            "^Subject$": false
+          },
+          "variables": true
+        }
+      ]
+    },
+    "rxjs-no-async-subscribe": true,
+    "rxjs-no-create": true,
+    "rxjs-no-explicit-generics": true,
+    "rxjs-no-exposed-subjects": true,
+    "rxjs-no-ignored-replay-buffer": true,
+    "rxjs-no-index": true,
+    "rxjs-no-internal": true,
+    "rxjs-no-nested-subscribe": true,
+    "rxjs-no-redundant-notify": true,
+    "rxjs-no-unbound-methods": true,
+    "rxjs-no-unsafe-catch": true,
+    "rxjs-no-unsafe-subject-next": true,
+    "rxjs-no-unsafe-switchmap": true,
+    "rxjs-no-unsafe-takeuntil": true,
+    "rxjs-prefer-observer": true
+  }
+}

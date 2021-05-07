@@ -1,0 +1,9 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */ {
+  "angularCompilerOptions": {
+    "enableIvy": false
+  },
+  "compilerOptions": {
+    "declarationMap": false
+  },
+  "extends": "./tsconfig.lib.json"
+}

@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  position: relative;
+}
+
+:host-context(.ngx-form-messages-group) {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.ngx-form-message-text {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ngx-form-message-placeholder {
+  display: none;
+
+  &:only-child {
+    display: inline;
+  }
+}

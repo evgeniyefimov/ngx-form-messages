@@ -1,0 +1,31 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "allowedPostUpgradeCommands": ["^npm ci --ignore-scripts$', '^npx ng update'"],
+  "allowPostUpgradeCommandTemplating": true,
+  "trustLevel": "high",
+  "groupName": "all",
+  "masterIssue": true,
+  "packageRules": [
+    {
+      "groupName": "@types",
+      "separateMajorMinor": false,
+      "schedule": ["before 2am on sunday"],
+      "sourceUrlPrefixes": ["https://github.com/DefinitelyTyped/DefinitelyTyped"]
+    },
+    {
+      "packageNames": ["zone.js", "typescript", "tslib"],
+      "separateMinorPatch": true
+    },
+    {
+      "packageNames": ["zone.js", "typescript", "tslib"],
+      "updateTypes": ["minor", "major"],
+      "enabled": false
+    },
+    {
+      "masterIssueApproval": true,
+      "schedule": ["before 2am on sunday"],
+      "updateTypes": ["major"]
+    }
+  ],
+  "schedule": ["before 2am"]
+}
