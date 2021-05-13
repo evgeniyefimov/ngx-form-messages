@@ -1,6 +1,8 @@
 {
+  "author": "Evgeniy Efimov",
   "dependencies": {
     "@ngrx/component": "11.1.1",
+    "ngx-local-pipe": "1.0.0",
     "tslib": "^2.0.0"
   },
   "keywords": [
@@ -11,10 +13,10 @@
   ],
   "name": "ngx-form-messages",
   "peerDependencies": {
-    "@angular/common": ">=11.1.0",
-    "@angular/core": ">=11.1.0",
-    "@angular/forms": ">=11.1.0",
-    "rxjs": ">=6.2.0"
+    "@angular/common": "^11.0.0",
+    "@angular/core": "^11.0.0",
+    "@angular/forms": "^11.0.0",
+    "rxjs": "^6.2.0"
   },
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

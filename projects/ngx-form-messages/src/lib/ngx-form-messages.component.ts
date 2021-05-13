@@ -11,7 +11,7 @@ import {
   ɵisPromise,
 } from '@angular/core';
 import { AbstractControl, FormGroupDirective, ValidationErrors } from '@angular/forms';
-import { combineLatest, from, Observable, of, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, combineLatest, from, Observable, of, ReplaySubject } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 
 import { NgxFormMessageComponent } from './ngx-form-message.component';
@@ -19,6 +19,7 @@ import {
   NgxFormMessageConfig,
   NgxFormMessageConfigFactory,
   NGX_FORM_MESSAGE_CONFIG,
+  When,
   WhenType,
 } from './ngx-form-message.config';
 import { extractDirtyChanges, extractTouchedChanges, objectKeys } from './utils';
@@ -47,7 +48,7 @@ export class NgxFormMessagesComponent implements AfterContentInit {
 
   private readonly afterContentInitSource = new ReplaySubject<void>(1);
   private readonly controlSource = new ReplaySubject<AbstractControl | undefined>(1);
-  private readonly whenSource = new ReplaySubject<WhenType>(1);
+  private readonly whenSource = new BehaviorSubject(When.touched as WhenType);
 
   constructor(
     private readonly formGroupDirective: FormGroupDirective,
@@ -60,7 +61,11 @@ export class NgxFormMessagesComponent implements AfterContentInit {
     const externalNgxFormMessageConfig$ = this.getNgxFormMessagesConfig(ngxFormMessageConfigFactory);
 
     this.ngxFormMessageConfig$ = externalNgxFormMessageConfig$.pipe(
-      map((ngxFormMessageConfig) => this.getInitialNgxFormMessagConfig(ngxFormMessageConfig)),
+      map((ngxFormMessageConfig) => {
+        const initialNgxFormMessagConfig = this.getInitialNgxFormMessagConfig(ngxFormMessageConfig);
+
+        return initialNgxFormMessagConfig;
+      }),
     );
 
     this.staticErrorList$ = this.ngxFormMessageConfig$.pipe(map(objectKeys));
@@ -166,13 +171,15 @@ export class NgxFormMessagesComponent implements AfterContentInit {
    */
   @Input()
   public set when(value: WhenType | undefined | null) {
-    this.whenSource.next(value ?? 'touched');
+    if (value && value in When) {
+      this.whenSource.next(value);
+    }
   }
 
   public canShow(
     errorKey: keyof NgxFormMessageConfig,
     errors: ValidationErrors | undefined,
-    single: boolean | undefined,
+    single: boolean | undefined | null,
   ): boolean {
     if (!errors) {
       return false;

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { Observable, of } from 'rxjs';
 
 import { NgxFormMessageConfig, NGX_FORM_MESSAGE_CONFIG, WhenType } from './ngx-form-message.config';
 import { NgxFormMessagesComponent } from './ngx-form-messages.component';
@@ -326,5 +327,45 @@ describe('Test custom config', () => {
     fixture.detectChanges();
     const message = getMessage(fixture, 'min');
     expect(message?.textContent).toBe('Overriden min error');
+  }));
+});
+
+describe('Test custom config with Observable', () => {
+  let component: TestHostComponent;
+  let fixture: ComponentFixture<TestHostComponent>;
+
+  beforeEach(async () => {
+    TestBed.configureTestingModule({
+      declarations: [TestHostComponent],
+      imports: [NgxFormMessagesModule, ReactiveFormsModule],
+      providers: [
+        {
+          provide: NGX_FORM_MESSAGE_CONFIG,
+          useValue: (): Observable<NgxFormMessageConfig> => {
+            return of({
+              email: () => 'Overridden email message',
+            });
+          },
+        },
+      ],
+    });
+
+    fixture = TestBed.createComponent(TestHostComponent);
+    component = fixture.componentInstance;
+    component.when = 'always';
+    fixture.detectChanges();
+
+    return fixture.whenStable().then(() => {
+      fixture.detectChanges();
+    });
+  });
+
+  it('should have correct overriden email message', fakeAsync(() => {
+    setValidators(fixture, Validators.email);
+    makeInputDirty(fixture, 'Hello world');
+    tick();
+    fixture.detectChanges();
+    const message = getMessage(fixture, 'email');
+    expect(message?.textContent).toBe('Overridden email message');
   }));
 });

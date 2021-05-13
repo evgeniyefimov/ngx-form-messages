@@ -6,7 +6,7 @@
     "
   >
     <ng-container *ngIf="cutomFormMessageComponent.error">
-      <ng-container *ngIf="cutomFormMessageComponent.error | ngxLocal: canShow:(errors$ | ngrxPush):single">
+      <ng-container *ngIf="cutomFormMessageComponent.error | ngxLocalPipe: canShow:(errors$ | ngrxPush):single">
         <div class="ngx-form-message-text" [attr.ngx-form-message-error]="cutomFormMessageComponent.error">
           <ng-container [ngTemplateOutlet]="cutomFormMessageComponent.templateRef"></ng-container>
         </div>
@@ -15,9 +15,9 @@
   </ng-container>
 
   <ng-container *ngFor="let error of staticErrorList$ | ngrxPush; trackBy: identifyStaticError">
-    <ng-container *ngIf="error | ngxLocal: canShow:(errors$ | ngrxPush):single">
+    <ng-container *ngIf="error | ngxLocalPipe: canShow:(errors$ | ngrxPush):single">
       <ngx-form-message [error]="error" #staticFormMessageComponent>
-        <span>{{ error | ngxLocal: getText:(errors$ | ngrxPush):(ngxFormMessageConfig$ | ngrxPush) }}</span>
+        <span>{{ error | ngxLocalPipe: getText:(errors$ | ngrxPush):(ngxFormMessageConfig$ | ngrxPush) }}</span>
       </ngx-form-message>
 
       <div class="ngx-form-message-text" [attr.ngx-form-message-error]="error">
