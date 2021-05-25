@@ -2,9 +2,10 @@
   "author": "Evgeniy Efimov",
   "dependencies": {
     "@ngrx/component": "11.1.1",
-    "ngx-local-pipe": "1.0.0",
+    "ngx-local-pipe": "1.0.1",
     "tslib": "^2.0.0"
   },
+  "description": "Angular components for validation messages, like ngMessages",
   "keywords": [
     "angular",
     "form",
@@ -13,10 +14,14 @@
   ],
   "name": "ngx-form-messages",
   "peerDependencies": {
-    "@angular/common": "^11.0.0",
-    "@angular/core": "^11.0.0",
-    "@angular/forms": "^11.0.0",
+    "@angular/common": ">=11.0.0 <13.0.0",
+    "@angular/core": ">=11.0.0 <13.0.0",
+    "@angular/forms": ">=11.0.0 <13.0.0",
     "rxjs": "^6.2.0"
   },
-  "version": "1.0.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evgeniyefimov/ngx-form-messages.git"
+  },
+  "version": "1.0.2"
 }

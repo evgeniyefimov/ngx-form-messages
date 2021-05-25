@@ -21,17 +21,19 @@ Just give it control, that's all.
 
 ### Api
 
-###### @Input() single: boolean
+`ngx-form-messages`
 
-Show only first error. Default `false`
+| Name      | Type                                                  | Description                                      |
+| --------- | ----------------------------------------------------- | ------------------------------------------------ |
+| [single]  | `boolean`                                             | Show only first error. Default `false`           |
+| [control] | `AbstractFormControl`                                 | This field is required.                          |
+| [when]    | <code>"touched" &#124; "dirty" &#124; "always"</code> | State of form control when to show error message |
 
-###### @Input() control: AbstractControl
+`ngx-form-message`
 
-Your control, obviously
-
-###### @Input() when: "dirty" | "touched" | "always";
-
-When display messages in addition to the submitted state. Default `touched`
+| Name    | Type     | Description                                |
+| ------- | -------- | ------------------------------------------ |
+| [error] | `string` | Name of an error in abstract form control. |
 
 ### Config
 
@@ -112,7 +114,3 @@ You can add new messages or override existing ones with content projection and `
   </ngx-form-messages>
 </form>
 ```
-
-###### @Input() error: string;
-
-Name of your error.
