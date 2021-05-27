@@ -33,7 +33,9 @@ import { extractDirtyChanges, extractTouchedChanges, objectKeys } from './utils'
 export class NgxFormMessagesComponent implements AfterContentInit {
   public readonly afterContentInit$: Observable<void>;
   public readonly control$: Observable<AbstractControl | undefined>;
-  public readonly cutomFormMessageComponentList$: Observable<ReadonlyArray<NgxFormMessageComponent>>;
+  public readonly cutomFormMessageComponentList$: Observable<
+    ReadonlyArray<NgxFormMessageComponent & Required<Pick<NgxFormMessageComponent, 'error'>>>
+  >;
   public readonly errors$: Observable<ValidationErrors | undefined>;
   public readonly isVisible$: Observable<boolean>;
   public readonly ngxFormMessageConfig$: Observable<Required<NgxFormMessageConfig>>;
@@ -178,7 +180,7 @@ export class NgxFormMessagesComponent implements AfterContentInit {
 
   public canShow(
     errorKey: keyof NgxFormMessageConfig,
-    errors: ValidationErrors | undefined,
+    errors: ValidationErrors | undefined | null,
     single: boolean | undefined | null,
   ): boolean {
     if (!errors) {
@@ -196,8 +198,8 @@ export class NgxFormMessagesComponent implements AfterContentInit {
 
   public getText(
     errorKey: keyof NgxFormMessageConfig,
-    errors: ValidationErrors | undefined,
-    ngxFormMessageConfig: Required<NgxFormMessageConfig> | undefined,
+    errors: ValidationErrors | undefined | null,
+    ngxFormMessageConfig: Required<NgxFormMessageConfig> | undefined | null,
   ): string {
     const error = errors ? errors[errorKey] : undefined;
 

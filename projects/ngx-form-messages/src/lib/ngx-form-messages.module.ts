@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveComponentModule } from '@ngrx/component';
 import { NgxLocalPipeModule } from 'ngx-local-pipe';
 
 import { NgxFormMessageComponent } from './ngx-form-message.component';
@@ -12,6 +11,6 @@ const DECLARATIONS = [NgxFormMessageComponent, NgxFormMessagesGroupComponent, Ng
 @NgModule({
   declarations: DECLARATIONS,
   exports: DECLARATIONS,
-  imports: [CommonModule, NgxLocalPipeModule, ReactiveComponentModule],
+  imports: [CommonModule, NgxLocalPipeModule],
 })
 export class NgxFormMessagesModule {}
