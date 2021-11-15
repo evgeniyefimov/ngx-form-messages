@@ -13,10 +13,10 @@
   ],
   "name": "ngx-form-messages",
   "peerDependencies": {
-    "@angular/common": ">=11.0.0 <13.0.0",
-    "@angular/core": ">=11.0.0 <13.0.0",
-    "@angular/forms": ">=11.0.0 <13.0.0",
-    "rxjs": "^6.2.0"
+    "@angular/common": "<14.0.0",
+    "@angular/core": "<14.0.0",
+    "@angular/forms": "<14.0.0",
+    "rxjs": "^7.0.0"
   },
   "repository": {
     "type": "git",
