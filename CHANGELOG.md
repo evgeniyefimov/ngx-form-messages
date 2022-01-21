@@ -1,3 +1,7 @@
+# 2.0.0
+
+- **feat** update Angular packages to version 13.0.0
+
 # 1.0.3
 
 - **chore** removed @ngrx/component deps

@@ -1,4 +1,5 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */ {
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
@@ -13,21 +14,26 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "lib": ["es2018", "dom"],
+    "lib": ["es2020", "dom"],
     "module": "es2020",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
+    "noImplicitOverride": true,
     "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "./dist/out-tsc",
     "paths": {
-      "ngx-form-messages": ["dist/ngx-form-messages/ngx-form-messages", "dist/ngx-form-messages"]
+      "ngx-form-messages": [
+        "dist/ngx-form-messages/ngx-form-messages",
+        "dist/ngx-form-messages"
+      ]
     },
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es2015"
+    "target": "es2017"
   }
 }

@@ -1,43 +1,79 @@
 // tslint:disable: max-classes-per-file component-max-inline-declarations no-magic-numbers no-implicit-dependencies prefer-on-push-component-change-detection
 import { Component } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 
-import { NgxFormMessageConfig, NGX_FORM_MESSAGE_CONFIG, WhenType } from './ngx-form-message.config';
+import {
+  NgxFormMessageConfig,
+  NGX_FORM_MESSAGE_CONFIG,
+  WhenType,
+} from './ngx-form-message.config';
 import { NgxFormMessagesComponent } from './ngx-form-messages.component';
 import { NgxFormMessagesModule } from './ngx-form-messages.module';
 
-function setValidators(fixture: ComponentFixture<TestHostComponent>, newValidator: ValidatorFn | ValidatorFn[]): void {
-  fixture.componentInstance.form.controls.testControl.setValidators(newValidator);
-  fixture.componentInstance.form.controls.testControl.updateValueAndValidity();
+function setValidators(
+  fixture: ComponentFixture<TestHostComponent>,
+  newValidator: ValidatorFn | ValidatorFn[]
+): void {
+  fixture.componentInstance.form.controls['testControl'].setValidators(
+    newValidator
+  );
+  fixture.componentInstance.form.controls[
+    'testControl'
+  ].updateValueAndValidity();
   fixture.detectChanges();
 }
 
 function makeInputTouched(fixture: ComponentFixture<TestHostComponent>): void {
-  fixture.debugElement.query(By.css('input')).triggerEventHandler('focus', undefined);
-  fixture.debugElement.query(By.css('input')).triggerEventHandler('blur', undefined);
+  fixture.debugElement
+    .query(By.css('input'))
+    .triggerEventHandler('focus', undefined);
+  fixture.debugElement
+    .query(By.css('input'))
+    .triggerEventHandler('blur', undefined);
   fixture.detectChanges();
 }
 
-function makeInputDirty(fixture: ComponentFixture<TestHostComponent>, value: unknown): void {
+function makeInputDirty(
+  fixture: ComponentFixture<TestHostComponent>,
+  value: unknown
+): void {
   const inputEl = fixture.debugElement.query(By.css('input'));
   inputEl.nativeElement.value = value;
   inputEl.triggerEventHandler('input', { target: inputEl.nativeElement });
   fixture.detectChanges();
 }
 
-function getAllMessage(fixture: ComponentFixture<TestHostComponent>): NodeListOf<Element> {
+function getAllMessage(
+  fixture: ComponentFixture<TestHostComponent>
+): NodeListOf<Element> {
   const hostElement: HTMLElement = fixture.nativeElement;
   const messages = hostElement.querySelectorAll(`[ngx-form-message-error]`);
 
   return messages;
 }
 
-function getMessage(fixture: ComponentFixture<TestHostComponent>, error: string): Element | null {
+function getMessage(
+  fixture: ComponentFixture<TestHostComponent>,
+  error: string
+): Element | null {
   const hostElement: HTMLElement = fixture.nativeElement;
-  const message = hostElement.querySelector(`[ngx-form-message-error="${error}"]`);
+  const message = hostElement.querySelector(
+    `[ngx-form-message-error="${error}"]`
+  );
 
   return message;
 }
@@ -46,10 +82,20 @@ function getMessage(fixture: ComponentFixture<TestHostComponent>, error: string)
   selector: 'ngx-test-host',
   template: ` <form [formGroup]="form">
     <input formControlName="testControl" />
-    <ngx-form-messages [control]="form.controls.testControl" [single]="single" [when]="when">
-      <ngx-form-message [error]="'custom'">This is a custom message</ngx-form-message>
-      <ngx-form-message [error]="'phone'">Invalid phone number</ngx-form-message>
-      <ngx-form-message *ngIf="overridenMinEnable" [error]="'min'">Overriden min error</ngx-form-message>
+    <ngx-form-messages
+      [control]="form.controls.testControl"
+      [single]="single"
+      [when]="when"
+    >
+      <ngx-form-message [error]="'custom'"
+        >This is a custom message</ngx-form-message
+      >
+      <ngx-form-message [error]="'phone'"
+        >Invalid phone number</ngx-form-message
+      >
+      <ngx-form-message *ngIf="overridenMinEnable" [error]="'min'"
+        >Overriden min error</ngx-form-message
+      >
     </ngx-form-messages>
   </form>`,
 })
@@ -84,8 +130,9 @@ describe('NgxFormMessagesComponent', () => {
     });
 
     it('should contain only placeholder', () => {
-      const ngxFormMessagesElement: HTMLElement = fixture.debugElement.query(By.directive(NgxFormMessagesComponent))
-        .nativeElement;
+      const ngxFormMessagesElement: HTMLElement = fixture.debugElement.query(
+        By.directive(NgxFormMessagesComponent)
+      ).nativeElement;
       expect(ngxFormMessagesElement.textContent).toContain('');
     });
   });
@@ -172,14 +219,20 @@ describe('NgxFormMessagesComponent', () => {
     });
 
     it('should have required and pattern messages', () => {
-      setValidators(fixture, [Validators.minLength(10), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]);
+      setValidators(fixture, [
+        Validators.minLength(10),
+        Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+      ]);
       makeInputDirty(fixture, 'Hello');
       const nodeList = getAllMessage(fixture);
       expect(nodeList.length).toBe(2);
     });
 
     it('should have required and pattern errors, but shows only required message', () => {
-      setValidators(fixture, [Validators.minLength(10), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]);
+      setValidators(fixture, [
+        Validators.minLength(10),
+        Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+      ]);
       makeInputDirty(fixture, 'Hello');
       component.single = true;
       fixture.detectChanges();
@@ -240,7 +293,9 @@ describe('NgxFormMessagesComponent', () => {
       setValidators(fixture, Validators.maxLength(5));
       makeInputDirty(fixture, 'Hello world');
       const message = getMessage(fixture, 'maxlength');
-      expect(message?.textContent).toBe('Field must be no longer than 5 characters');
+      expect(message?.textContent).toBe(
+        'Field must be no longer than 5 characters'
+      );
     });
 
     it('should have correct min message', () => {
@@ -254,7 +309,9 @@ describe('NgxFormMessagesComponent', () => {
       setValidators(fixture, Validators.minLength(10));
       makeInputDirty(fixture, 'Hello');
       const message = getMessage(fixture, 'minlength');
-      expect(message?.textContent).toBe('Field must be longer than 10 characters');
+      expect(message?.textContent).toBe(
+        'Field must be longer than 10 characters'
+      );
     });
 
     it('should have correct required message', () => {
