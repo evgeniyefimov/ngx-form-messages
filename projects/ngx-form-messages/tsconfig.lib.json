@@ -5,6 +5,7 @@
     "declarationMap": true,
     "inlineSources": true,
     "outDir": "../../out-tsc/lib",
+    "preserveSymlinks": true,
     "types": []
   },
   "exclude": ["src/test.ts", "**/*.spec.ts"],

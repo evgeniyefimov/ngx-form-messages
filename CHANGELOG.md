@@ -1,3 +1,7 @@
+# 2.0.1
+
+- **fix** preserve symlinks for library
+
 # 2.0.0
 
 - **feat** update Angular packages to version 13.0.0
