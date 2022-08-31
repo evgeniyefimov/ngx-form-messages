@@ -1,22 +1,22 @@
 {
   "author": "Evgeniy Efimov",
   "dependencies": {
-    "@angular/common": "13.1.3",
-    "@angular/compiler": "13.1.3",
-    "@angular/core": "13.1.3",
-    "@angular/forms": "13.1.3",
-    "@angular/platform-browser": "13.1.3",
-    "@angular/platform-browser-dynamic": "13.1.3",
-    "ngx-local-pipe": "2.0.1",
+    "@angular/common": "12.2.16",
+    "@angular/compiler": "12.2.16",
+    "@angular/core": "12.2.16",
+    "@angular/forms": "12.2.16",
+    "@angular/platform-browser": "12.2.16",
+    "@angular/platform-browser-dynamic": "12.2.16",
+    "ngx-local-pipe": "2.0.2",
     "rxjs": "7.5.2",
     "tslib": "2.3.1",
     "zone.js": "0.11.4"
   },
   "description": "Angular components for validation messages, like ngMessages",
   "devDependencies": {
-    "@angular-devkit/build-angular": "13.1.4",
-    "@angular/cli": "13.1.4",
-    "@angular/compiler-cli": "13.1.3",
+    "@angular-devkit/build-angular": "12.2.18",
+    "@angular/cli": "12.2.18",
+    "@angular/compiler-cli": "12.2.16",
     "@commitlint/cli": "16.1.0",
     "@commitlint/config-conventional": "16.0.0",
     "@types/jasmine": "3.10.3",
@@ -31,15 +31,17 @@
     "karma-jasmine": "4.0.1",
     "karma-jasmine-html-reporter": "1.7.0",
     "lint-staged": "12.3.1",
-    "ng-packagr": "13.1.3",
+    "ng-packagr": "12.2.7",
     "prettier": "2.5.1",
     "ts-node": "10.4.0",
-    "typescript": "4.5.5"
+    "typescript": "4.3.5"
   },
+  "license": "MIT",
   "lint-staged": {
     "*": "prettier --ignore-unknown --write"
   },
   "name": "ngx-form-messages",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/evgeniyefimov/ngx-form-messages.git"
@@ -52,5 +54,5 @@
     "test": "ng test",
     "watch": "ng build --watch --configuration development"
   },
-  "version": "2.0.1"
+  "version": "2.0.2"
 }

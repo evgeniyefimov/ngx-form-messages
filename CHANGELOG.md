@@ -1,3 +1,7 @@
+# 2.0.2
+
+- **feat** support Angular versions 12, 13, 14
+
 # 2.0.1
 
 - **fix** preserve symlinks for library
