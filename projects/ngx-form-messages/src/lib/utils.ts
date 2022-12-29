@@ -2,7 +2,7 @@ import { AbstractControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 
 // https://github.com/microsoft/TypeScript/pull/12253#issuecomment-353494273
-export function objectKeys<T>(object: T): (keyof T)[] {
+export function objectKeys<T extends object>(object: T): (keyof T)[] {
   return Object.keys(object) as (keyof T)[];
 }
 
@@ -30,12 +30,16 @@ export const extractTouchedChanges = (
 
   const touchedChanges$ = new Subject<boolean>();
 
-  function nextMarkAsTouched(...args: ArgumentsType<AbstractControl['markAsTouched']>): void {
+  function nextMarkAsTouched(
+    ...args: ArgumentsType<AbstractControl['markAsTouched']>
+  ): void {
     touchedChanges$.next(true);
     prevMarkAsTouched.bind(control)(...args);
   }
 
-  function nextMarkAsUntouched(...args: ArgumentsType<AbstractControl['markAsUntouched']>): void {
+  function nextMarkAsUntouched(
+    ...args: ArgumentsType<AbstractControl['markAsUntouched']>
+  ): void {
     touchedChanges$.next(false);
     prevMarkAsUntouched.bind(control)(...args);
   }
@@ -54,12 +58,16 @@ export const extractDirtyChanges = (
 
   const dirtyChanges$ = new Subject<boolean>();
 
-  function nextMarkAsDirty(...args: ArgumentsType<AbstractControl['markAsDirty']>): void {
+  function nextMarkAsDirty(
+    ...args: ArgumentsType<AbstractControl['markAsDirty']>
+  ): void {
     dirtyChanges$.next(true);
     prevMarkAsDirty.bind(control)(...args);
   }
 
-  function nextMarkAsPristine(...args: ArgumentsType<AbstractControl['markAsPristine']>): void {
+  function nextMarkAsPristine(
+    ...args: ArgumentsType<AbstractControl['markAsPristine']>
+  ): void {
     dirtyChanges$.next(false);
     prevMarkAsPristine.bind(control)(...args);
   }

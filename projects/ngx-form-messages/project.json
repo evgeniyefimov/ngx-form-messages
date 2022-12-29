@@ -1,0 +1,32 @@
+{
+  "name": "ngx-form-messages",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "configurations": {
+        "development": {
+          "tsConfig": "projects/ngx-form-messages/tsconfig.lib.json"
+        },
+        "production": {
+          "tsConfig": "projects/ngx-form-messages/tsconfig.lib.prod.json"
+        }
+      },
+      "defaultConfiguration": "production",
+      "options": {
+        "project": "projects/ngx-form-messages/ng-package.json"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "karmaConfig": "projects/ngx-form-messages/karma.conf.js",
+        "main": "projects/ngx-form-messages/src/test.ts",
+        "tsConfig": "projects/ngx-form-messages/tsconfig.spec.json"
+      }
+    }
+  },
+  "prefix": "lib",
+  "projectType": "library",
+  "sourceRoot": "projects/ngx-form-messages/src"
+}
