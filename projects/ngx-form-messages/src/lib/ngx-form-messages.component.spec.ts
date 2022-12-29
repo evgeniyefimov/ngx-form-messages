@@ -26,10 +26,10 @@ import { NgxFormMessagesModule } from './ngx-form-messages.module';
 
 function setValidators(
   fixture: ComponentFixture<TestHostComponent>,
-  newValidator: ValidatorFn | ValidatorFn[]
+  newValidator: ValidatorFn | ValidatorFn[],
 ): void {
   fixture.componentInstance.form.controls['testControl'].setValidators(
-    newValidator
+    newValidator,
   );
   fixture.componentInstance.form.controls[
     'testControl'
@@ -49,7 +49,7 @@ function makeInputTouched(fixture: ComponentFixture<TestHostComponent>): void {
 
 function makeInputDirty(
   fixture: ComponentFixture<TestHostComponent>,
-  value: unknown
+  value: unknown,
 ): void {
   const inputEl = fixture.debugElement.query(By.css('input'));
   inputEl.nativeElement.value = value;
@@ -58,7 +58,7 @@ function makeInputDirty(
 }
 
 function getAllMessage(
-  fixture: ComponentFixture<TestHostComponent>
+  fixture: ComponentFixture<TestHostComponent>,
 ): NodeListOf<Element> {
   const hostElement: HTMLElement = fixture.nativeElement;
   const messages = hostElement.querySelectorAll(`[ngx-form-message-error]`);
@@ -68,11 +68,11 @@ function getAllMessage(
 
 function getMessage(
   fixture: ComponentFixture<TestHostComponent>,
-  error: string
+  error: string,
 ): Element | null {
   const hostElement: HTMLElement = fixture.nativeElement;
   const message = hostElement.querySelector(
-    `[ngx-form-message-error="${error}"]`
+    `[ngx-form-message-error="${error}"]`,
   );
 
   return message;
@@ -131,7 +131,7 @@ describe('NgxFormMessagesComponent', () => {
 
     it('should contain only placeholder', () => {
       const ngxFormMessagesElement: HTMLElement = fixture.debugElement.query(
-        By.directive(NgxFormMessagesComponent)
+        By.directive(NgxFormMessagesComponent),
       ).nativeElement;
       expect(ngxFormMessagesElement.textContent).toContain('');
     });
@@ -294,7 +294,7 @@ describe('NgxFormMessagesComponent', () => {
       makeInputDirty(fixture, 'Hello world');
       const message = getMessage(fixture, 'maxlength');
       expect(message?.textContent).toBe(
-        'Field must be no longer than 5 characters'
+        'Field must be no longer than 5 characters',
       );
     });
 
@@ -310,7 +310,7 @@ describe('NgxFormMessagesComponent', () => {
       makeInputDirty(fixture, 'Hello');
       const message = getMessage(fixture, 'minlength');
       expect(message?.textContent).toBe(
-        'Field must be longer than 10 characters'
+        'Field must be longer than 10 characters',
       );
     });
 
