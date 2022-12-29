@@ -7,8 +7,8 @@ import {
   tick,
 } from '@angular/core/testing';
 import {
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   ReactiveFormsModule,
   ValidatorFn,
   Validators,
@@ -104,8 +104,8 @@ class TestHostComponent {
   public single?: boolean;
   public when?: WhenType;
 
-  public readonly form = new FormGroup({
-    testControl: new FormControl(),
+  public readonly form = new UntypedFormGroup({
+    testControl: new UntypedFormControl(),
   });
 }
 
