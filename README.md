@@ -5,7 +5,7 @@ is `touched`, can be changed through `Input`.
 ### Install
 
 1. install by running `npm i ngx-form-messages`
-2. Add `NgxFormMessagesModule` to your module imports
+2. Add `NgxFormMessagesComponent` to your imports
 
 ### Basic usage
 
@@ -51,34 +51,17 @@ You can override existing messages or add custom messages if provide factory fun
 InjectionToken.
 
 ```
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule , ReactiveFormsModule} from '@angular/forms';
-import { AppComponent } from './app.component';
 import { NGX_FORM_MESSAGE_CONFIG, NgxFormMessageConfig } from 'ngx-form-messages';
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxFormValidationsModule
-  ],
-  providers: [{
-    provide: NGX_FORM_MESSAGE_CONFIG,
-    useValue: (): NgxFormMessageConfig => {
-      return {
-        custom: () => "Custom error message"
-        email: () => "Overridden email message",
-      };
-    },
-  }],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+providers: [{
+  provide: NGX_FORM_MESSAGE_CONFIG,
+  useValue: (): NgxFormMessageConfig => {
+    return {
+      custom: () => "Custom error message"
+      email: () => "Overridden email message",
+    };
+  },
+}],
 ```
 
 Factory function signature is:
