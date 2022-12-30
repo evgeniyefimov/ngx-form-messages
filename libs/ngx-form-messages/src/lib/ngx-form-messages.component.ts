@@ -296,7 +296,7 @@ export class NgxFormMessagesComponent implements AfterContentInit {
       return ngxFormMessageConfig$.pipe(
         tap(() => {
           // Need to explicitly call change detection in case of observable changes
-          setTimeout(() => this.changeDetectorRef.markForCheck());
+          setTimeout(() => this.changeDetectorRef.detectChanges());
         }),
       );
     }
