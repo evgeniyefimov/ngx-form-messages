@@ -1,3 +1,5 @@
+![Build status](https://github.com/evgeniyefimov/ngx-form-messages/actions/workflows/ci.yml/badge.svg)
+
 Angular components for validation messages, like ngMessages. Contains default messages for common errors which can be
 overriden or extended through config or content projection. By default show errors when form is `submitted` or control
 is `touched`, can be changed through `Input`.
