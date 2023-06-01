@@ -1,3 +1,7 @@
+# 3.1.0
+
+- **feat** support Angular 16
+
 # 3.0.0
 
 BREAKING CHANGE:
