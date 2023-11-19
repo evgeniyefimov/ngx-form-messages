@@ -1,3 +1,7 @@
+# 3.2.0
+
+- **feat** support Angular 17
+
 # 3.1.0
 
 - **feat** support Angular 16
